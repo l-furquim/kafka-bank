@@ -18,16 +18,16 @@ public class TransactionService {
     }
 
     public TransactionDto create(TransactionDto data){
-        kafkaTemplate.send(data.identifier(), data);
+        kafkaTemplate.send(data.getIdentifier(), data);
 
         transactionRepository.save(
                 Transaction.build(
-                        data.identifier(),
-                        data.chaveOrigem(),
-                        data.chaveDestino(),
-                        data.valor(),
-                        data.dataTransferencia(),
-                        data.status()
+                        data.getIdentifier(),
+                        data.getChaveOrigem(),
+                        data.getChaveDestino(),
+                        data.getValor(),
+                        data.getDataTransferencia(),
+                        data.getStatus()
                 )
         );
 
