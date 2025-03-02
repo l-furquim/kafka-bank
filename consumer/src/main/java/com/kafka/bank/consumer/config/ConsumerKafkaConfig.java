@@ -30,6 +30,17 @@ public class ConsumerKafkaConfig {
                 ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 bootstrapAddress);
 
+        props.put(
+                ConsumerConfig.MAX_POLL_RECORDS_CONFIG,10
+        );
+
+        props.put(
+                ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"
+        );
+
+        props.put(
+                ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"
+        );
         var jsonDeserializer = new JsonDeserializer<>(TransactionDto.class);
 
         jsonDeserializer.forKeys()
