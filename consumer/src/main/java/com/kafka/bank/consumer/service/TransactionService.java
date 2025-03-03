@@ -1,6 +1,7 @@
 package com.kafka.bank.consumer.service;
 
 import com.kafka.bank.consumer.dto.TransactionDto;
+import com.kafka.bank.consumer.exception.KeyNotFoundException;
 import com.kafka.bank.consumer.model.Transaction;
 import com.kafka.bank.consumer.model.enums.TransactionStatus;
 import com.kafka.bank.consumer.repository.KeyRepository;
@@ -49,6 +50,7 @@ public class TransactionService {
 
         if(origin.isEmpty() || destine.isEmpty()){
            transaction.get().setStatus(TransactionStatus.ERRO);
+           throw new KeyNotFoundException("Could not found the key");
         }else{
             transaction.get().setStatus(TransactionStatus.PROCESSADO);
         }
